@@ -6,6 +6,9 @@ public class User {
     private String email;
     private String phoneNumber;
     private String idNumber;
+    private String dob;
+    private String gender;
+    private String organization;
 
 
 
@@ -13,15 +16,17 @@ public class User {
         this.id = id;
         this.name = name;
         this.email = email;
-
         this.phoneNumber=phoneNumber;
     }
 
-    public User(String name, String email, String phoneNumber, String idNumber) {
+    public User(String name, String email, String phoneNumber, String idNumber, String dob, String gender, String organization) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.idNumber = idNumber;
+        this.dob = dob;
+        this.gender = gender;
+        this.organization = organization;
     }
 
     // Getters and Setters
@@ -63,5 +68,29 @@ public class User {
 
     public void setIdNumber(String idNumber) {
         this.idNumber = idNumber;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getOrganization() {
+        return organization;
+    }
+
+    public void setOrganization(String organization) {
+        this.organization = organization;
     }
 }

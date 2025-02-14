@@ -28,7 +28,7 @@ public class UserServlet extends HttpServlet {
                 request.getRequestDispatcher("user-form.jsp").forward(request, response);
                 break;
             case "/insert":
-                userDAO.insertUser(new User(request.getParameter("full_name"), request.getParameter("email"), request.getParameter("phone_number"),request.getParameter("id_number")));
+                userDAO.insertUser(new User(request.getParameter("full_name"), request.getParameter("email"), request.getParameter("phone_number"),request.getParameter("id_number"),request.getParameter("dob"),request.getParameter("gender"),request.getParameter("organization")));
                 response.sendRedirect("list");
                 break;
             case "/delete":

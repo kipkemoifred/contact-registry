@@ -27,6 +27,15 @@
     <label>ID Number:</label>
     <input type="text" name="id_number" value="<%= isEdit ? user.getIdNumber() : "" %>" required><br>
 
+    <label>Date Of Birth:</label>
+    <input type="date" name="dob" value="<%= isEdit ? user.getDob() : "" %>" required><br>
+
+    <label>Gender:</label>
+    <input type="text" name="gender" value="<%= isEdit ? user.getGender() : "" %>" required><br>
+
+    <label>Organization:</label>
+    <input type="text" name="organization" value="<%= isEdit ? user.getIdNumber() : "" %>" required><br>
+
 
     <input type="submit" value="<%= isEdit ? "Update" : "Save" %>">
 </form>
