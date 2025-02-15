@@ -4,6 +4,7 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
   <servlet>
     <servlet-name>UserServlet</servlet-name>
     <servlet-class>UserServlet</servlet-class>
@@ -12,4 +13,6 @@
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/</url-pattern>
   </servlet-mapping>
+
+
 </web-app>

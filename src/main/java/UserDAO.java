@@ -148,6 +148,36 @@ public class UserDAO {
             throw new RuntimeException("SHA-256 Algorithm not found", e);
         }
     }
+    public List<User> getAllUsers() throws SQLException {
+        List<User> users = new ArrayList<>();
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SELECT_ALL_USERS);
+             ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                users.add(new User(rs.getInt("id"), rs.getString("full_name"), rs.getString("email"), rs.getString("phone_number")));
+            }
+        }
+        return users;
+    }
+
+    public boolean updateApiUser(User user) throws SQLException {
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(UPDATE_USER_SQL)) {
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPhoneNumber());
+            stmt.setInt(4, user.getId());
+            return stmt.executeUpdate() > 0;
+        }
+    }
+
+    public boolean deleteApiUser(int id) throws SQLException {
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(DELETE_USER_SQL)) {
+            stmt.setInt(1, id);
+            return stmt.executeUpdate() > 0;
+        }
+    }
 
 
 }
