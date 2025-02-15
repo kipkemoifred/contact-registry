@@ -14,6 +14,8 @@ import java.util.List;
 public class UserDAO {
     private static final String INSERT_USER_SQL = "INSERT INTO contacts (full_name, email,phone_number,id_number,dob,gender,organization,masked_name,masked_phone_number,hashed_phone_number) VALUES (?,?,?,?,?,?,?,?,?,?)";
     private static final String SELECT_USER_BY_ID = "SELECT id, full_name, email,phone_number FROM contacts WHERE id = ?";
+    private static final String SELECT_USER_BY_HASHED_PHONENUMBER = "SELECT id, full_name, email,phone_number FROM contacts WHERE hashed_phone_number = ?";
+    private static final String SELECT_USER_BY_MASKED_PHONENUMBER_AND_MASKED_NAME = "SELECT id, full_name, email,phone_number FROM contacts WHERE masked_phone_number = ? and  masked_name = ?";
     private static final String SELECT_ALL_USERS = "SELECT * FROM contacts";
     private static final String DELETE_USER_SQL = "DELETE FROM contacts WHERE id = ?";
     private static final String UPDATE_USER_SQL = "UPDATE contacts SET full_name = ?, email = ?,phone_number = ?  WHERE id = ?";
@@ -54,6 +56,37 @@ public class UserDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        return user;
+    }
+
+    public User getPhoneNumberByPhoneHashOrMaskedNameAndPhone(String enteredHash, String maskedName,String maskedPhoneNumber) {
+        User user = null;
+        if(enteredHash!=null){
+            try (Connection conn = DBConnection.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(SELECT_USER_BY_HASHED_PHONENUMBER)) {
+                ps.setString(1, enteredHash);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    user = new User(rs.getInt("id"), rs.getString("full_name"), rs.getString("email"), rs.getString("phone_number"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (maskedName!=null&&maskedPhoneNumber!=null) {
+            try (Connection conn = DBConnection.getConnection();
+                 PreparedStatement ps = conn.prepareStatement(SELECT_USER_BY_MASKED_PHONENUMBER_AND_MASKED_NAME)) {
+                ps.setString(1, maskedPhoneNumber);
+                ps.setString(2, maskedName);
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    user = new User(rs.getInt("id"), rs.getString("full_name"), rs.getString("email"), rs.getString("phone_number"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         return user;
     }
 

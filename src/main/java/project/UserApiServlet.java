@@ -49,6 +49,10 @@ public class UserApiServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("application/json");
+        String pathInfo = request.getPathInfo();
+        int hashedPhoneNumber = Integer.parseInt(pathInfo.substring(1));
+        int maskedPhoneNumber = Integer.parseInt(pathInfo.substring(1));
+        int maskedName = Integer.parseInt(pathInfo.substring(1));
 
         try (BufferedReader reader = request.getReader()) {
             User user = gson.fromJson(reader, User.class);
