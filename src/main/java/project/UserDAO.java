@@ -1,5 +1,6 @@
+package project;
 
-import model.User;
+import project.model.User;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

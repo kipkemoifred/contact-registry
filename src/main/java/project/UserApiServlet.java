@@ -1,5 +1,7 @@
+package project;
+
 import com.google.gson.Gson;
-import model.User;
+import project.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,4 +1,4 @@
-package model;
+package project.model;
 
 public class User {
     private int id;

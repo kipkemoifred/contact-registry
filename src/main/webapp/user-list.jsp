@@ -1,16 +1,16 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="java.util.List, model.User" %>
+<%@ page import="java.util.List, project.model.User" %>
 <%
   List<User> users = (List<User>) request.getAttribute("users");
 %>
 <html>
 <head>
-  <title>model.User List</title>
+  <title>project.model.User List</title>
 </head>
 <body>
-<h2>model.User List</h2>
-<a href="new">Add New model.User</a>
+<h2>project.model.User List</h2>
+<a href="new">Add New project.model.User</a>
 <table border="1">
   <tr>
     <th>ID</th>

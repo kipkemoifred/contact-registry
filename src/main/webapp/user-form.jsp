@@ -1,16 +1,16 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="model.User" %>
+<%@ page import="project.model.User" %>
 <%
     User user = (User) request.getAttribute("user");
     boolean isEdit = (user != null);
 %>
 <html>
 <head>
-    <title><%= isEdit ? "Edit model.User" : "New model.User" %></title>
+    <title><%= isEdit ? "Edit project.soap.model.User" : "New project.soap.model.User" %></title>
 </head>
 <body>
-<h2><%= isEdit ? "Edit model.User" : "New model.User" %></h2>
+<h2><%= isEdit ? "Edit project.soap.model.User" : "New project.soap.model.User" %></h2>
 <form action="<%= isEdit ? "update" : "insert" %>" method="post">
     <% if (isEdit) { %>
     <input type="hidden" name="id" value="<%= user.getId() %>">

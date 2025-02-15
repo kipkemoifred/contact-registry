@@ -1,6 +1,6 @@
+package project;
 
-
-import model.User;
+import project.model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
