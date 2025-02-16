@@ -19,6 +19,7 @@ public class UserDAO {
     private static final String SELECT_ALL_USERS = "SELECT * FROM contacts";
     private static final String DELETE_USER_SQL = "DELETE FROM contacts WHERE id = ?";
     private static final String UPDATE_USER_SQL = "UPDATE contacts SET full_name = ?, email = ?,phone_number = ?  WHERE id = ?";
+    private static final String SELECT_CONTACTS_BY_ORG = "SELECT * FROM contacts WHERE organization = ?";
 
     public void insertUser(User user) {
         try (Connection conn = DBConnection.getConnection();
@@ -211,6 +212,33 @@ public class UserDAO {
             stmt.setInt(1, id);
             return stmt.executeUpdate() > 0;
         }
+    }
+
+
+    public List<User> getContactsByOrganization(String organization) {
+        System.out.println("org " + organization);
+        List<User> contacts = new ArrayList<>();
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement stmt = conn.prepareStatement(SELECT_CONTACTS_BY_ORG)) {
+
+            stmt.setString(1, organization);
+
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    contacts.add(new User(
+                            rs.getInt("id"),
+                            rs.getString("full_name"),
+                            rs.getString("email"),
+                            rs.getString("phone_number")
+                    ));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace(); // Consider using a logger instead of printing stack trace
+        }
+
+        return contacts;
     }
 
 

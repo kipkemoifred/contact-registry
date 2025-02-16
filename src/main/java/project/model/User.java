@@ -93,4 +93,5 @@ public class User {
     public void setOrganization(String organization) {
         this.organization = organization;
     }
+
 }

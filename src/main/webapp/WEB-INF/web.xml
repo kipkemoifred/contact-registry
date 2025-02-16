@@ -14,5 +14,12 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-
+ <servlet>
+    <servlet-name>ContactSOAPService</servlet-name>
+    <servlet-class>project.soap.ContactSOAPService</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContactSOAPService</servlet-name>
+    <url-pattern>/ContactSOAPService</url-pattern>
+  </servlet-mapping>
 </web-app>
